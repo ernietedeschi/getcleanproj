@@ -23,7 +23,7 @@ colnames(act_labels) <- c("actnum", "activity")
 
 ### STEP 3: Create data sets from the test and train data.
 
-test <- read.table("test/X_test.txt") 
+test <- read.table("test/X_test.txt")
 colnames(test) <- features$V2
 test$id <- read.table("test/subject_test.txt")$V1
 test$actnum <- read.table("test/Y_test.txt")$V1
@@ -52,4 +52,4 @@ all <- gather(all, measure, value, c(-id, -activity, -dataset))
 ### STEP 7: Create a summary data set that only includes means, and export.
 
 all_summary <- summarize(group_by(all, id, activity, measure), mean(value))
-write.table(all_summary, "all_summary.txt")
+write.table(all_summary, "all_summary.txt", row.name = FALSE)
